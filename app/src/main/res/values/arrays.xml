@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //Array for result spinner
+    <string-array name="results_array">
+        <item>No action required</item>
+        <item>Advice given</item>
+        <item>Produce documents</item>
+        <item>Driver Detained</item>
+    </string-array>
+</resources>
