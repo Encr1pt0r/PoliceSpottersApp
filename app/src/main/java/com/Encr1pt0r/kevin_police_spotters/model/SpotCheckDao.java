@@ -12,7 +12,7 @@ import java.util.List;
 public interface SpotCheckDao {
 
     @Insert
-    void Insert(SpotCheck spotCheck);
+    void insert(SpotCheck spotCheck);
 
     @Query("SELECT * from SpotCheck ORDER BY dateTime ASC")
     LiveData<List<SpotCheck>> getAllSpotChecks();
