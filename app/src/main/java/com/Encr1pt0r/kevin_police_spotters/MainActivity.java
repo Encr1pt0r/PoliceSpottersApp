@@ -8,6 +8,11 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * @TODO Make sure that Room works
+     * @TODO RecyclerView integration for Room (TouchableOpacity from React?)
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
