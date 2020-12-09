@@ -39,9 +39,7 @@ public class SpotCheck {
         this.notes = notes;
     }
 
-    public Date getDateTime() {
-        return dateTime;
-    }
+    public Date getDateTime() { return dateTime; }
 
     public String getLocation() {
         return location;
