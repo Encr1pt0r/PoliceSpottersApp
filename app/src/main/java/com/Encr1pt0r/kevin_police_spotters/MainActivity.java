@@ -1,6 +1,7 @@
 package com.Encr1pt0r.kevin_police_spotters;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,18 +45,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         setContentView(R.layout.activity_main);
         spotCheckVM = ViewModelProviders.of(this).get(SpotCheckVM.class);
         spotCheckVM.getAllSpotChecks().observe(this, new Observer<List<SpotCheck>>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onChanged(List<SpotCheck> spotChecks) {
                 // When the database is updated the main List is updated for the RecyclerView
                 spotCheckList = spotChecks;
                 Log.i("debug", String.valueOf(spotCheckList));
-                Log.i("debug",spotChecks.get(0).getDateTime().getDate() + "/" + spotChecks.get(0).getDateTime().getMonth() + "/" + spotChecks.get(0).getDateTime().getYear());
-                Log.i("debug",spotChecks.get(0).getDateTime().getHours() + ":" + spotChecks.get(0).getDateTime().getMinutes());
+                //Log.i("debug",spotChecks.get(0).getDateTime().toLocalDate().toString());
+                //Log.i("debug",spotChecks.get(0).getDateTime().toLocalTime().toString());
 
                 adapter.setSpotCheckList(spotCheckList);
             }
@@ -71,11 +72,12 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(addSpotCheckIntent, 0);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Date newDate = new Date();
+        LocalDateTime newDate = LocalDateTime.now();
         String location = data.getStringExtra("location");
         String carReg = data.getStringExtra("carReg");
         String carModel = data.getStringExtra("carModel");
@@ -105,15 +107,16 @@ public class MainActivity extends AppCompatActivity {
             return new SpotCheckViewHolder(itemView);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onBindViewHolder(@NonNull SpotCheckListAdapter.SpotCheckViewHolder holder, int position) {
             SpotCheck currentSpotCheck = spotCheckList.get(position);
 
-            Log.i("debug", currentSpotCheck.getDateTime().getDate() + " / " + currentSpotCheck.getDateTime().getMonth() + " / " + currentSpotCheck.getDateTime().getYear());
+            Log.i("debug", currentSpotCheck.getDateTime().toLocalDate().toString());
 
             // Set text for other elements
-            holder.dateTV.setText(currentSpotCheck.getDateTime().getDate() + "/" + currentSpotCheck.getDateTime().getMonth() + "/" + currentSpotCheck.getDateTime().getYear());
-            holder.timeTV.setText(currentSpotCheck.getDateTime().getHours() + ":" + currentSpotCheck.getDateTime().getMinutes());
+            holder.dateTV.setText(currentSpotCheck.getDateTime().toLocalDate().toString());
+            holder.timeTV.setText(currentSpotCheck.getDateTime().toLocalTime().toString().substring(0,5));
             holder.carRegTV.setText(currentSpotCheck.getCarRegNo());
             holder.carModelTV.setText(currentSpotCheck.getMakeOfCar());
         }

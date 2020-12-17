@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface SpotCheckDao {
 
     // Method designated to finding between two dates
     @Query("SELECT * FROM SpotCheck WHERE dateTime BETWEEN :from AND :to")
-    LiveData<List<SpotCheck>> findChecksBetweenDates(Date from, Date to);
+    LiveData<List<SpotCheck>> findChecksBetweenDates(LocalDateTime from, LocalDateTime to);
 }
