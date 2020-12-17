@@ -31,7 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * @TODO RecyclerView integration for Room (TouchableOpacity from React?)
+     * @TODO RecyclerView integration for Room (TouchableOpacity from React?) Done
      */
 
     private SpotCheckVM spotCheckVM;
@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         setContentView(R.layout.activity_main);
         spotCheckVM = ViewModelProviders.of(this).get(SpotCheckVM.class);
         spotCheckVM.getAllSpotChecks().observe(this, new Observer<List<SpotCheck>>() {
@@ -51,8 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 // When the database is updated the main List is updated for the RecyclerView
                 spotCheckList = spotChecks;
                 Log.i("debug", String.valueOf(spotCheckList));
-                Log.i("debug",spotChecks.get(0).getDateTime().getDate() + " / " + spotChecks.get(0).getDateTime().getMonth() + " / " + spotChecks.get(0).getDateTime().getYear());
+                Log.i("debug",spotChecks.get(0).getDateTime().getDate() + "/" + spotChecks.get(0).getDateTime().getMonth() + "/" + spotChecks.get(0).getDateTime().getYear());
                 Log.i("debug",spotChecks.get(0).getDateTime().getHours() + ":" + spotChecks.get(0).getDateTime().getMinutes());
+
+                adapter.setSpotCheckList(spotCheckList);
             }
         });
 
@@ -60,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new SpotCheckListAdapter(this, spotCheckList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
     }
 
     public void addSpotCheck(View view) {
@@ -89,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
     // adapter for RecyclerView
     public class SpotCheckListAdapter extends RecyclerView.Adapter<SpotCheckListAdapter.SpotCheckViewHolder> {
 
-        private final List<SpotCheck> spotCheckList;
-        private LayoutInflater inflater;
+        private final LayoutInflater inflater;
+        private List<SpotCheck> spotCheckList;
 
         public SpotCheckListAdapter(Context context, List<SpotCheck> spotCheckList) {
             inflater = LayoutInflater.from(context);
@@ -101,25 +102,33 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public SpotCheckListAdapter.SpotCheckViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View itemView = inflater.inflate(R.layout.spotcheck_item, parent, false);
-            return new SpotCheckViewHolder(itemView, this);
+            return new SpotCheckViewHolder(itemView);
         }
 
         @Override
         public void onBindViewHolder(@NonNull SpotCheckListAdapter.SpotCheckViewHolder holder, int position) {
-            SpotCheck spotCheck = spotCheckList.get(position);
+            SpotCheck currentSpotCheck = spotCheckList.get(position);
 
-            Log.i("debug", spotCheck.getDateTime().getDate() + " / " + spotCheck.getDateTime().getMonth() + " / " + spotCheck.getDateTime().getYear());
+            Log.i("debug", currentSpotCheck.getDateTime().getDate() + " / " + currentSpotCheck.getDateTime().getMonth() + " / " + currentSpotCheck.getDateTime().getYear());
 
             // Set text for other elements
-            holder.dateTV.setText(spotCheck.getDateTime().getDate() + " / " + spotCheck.getDateTime().getMonth() + " / " + spotCheck.getDateTime().getYear());
-            holder.timeTV.setText(spotCheck.getDateTime().getHours() + ":" + spotCheck.getDateTime().getMinutes());
-            holder.carRegTV.setText(spotCheck.getCarRegNo());
-            holder.carModelTV.setText(spotCheck.getMakeOfCar());
+            holder.dateTV.setText(currentSpotCheck.getDateTime().getDate() + "/" + currentSpotCheck.getDateTime().getMonth() + "/" + currentSpotCheck.getDateTime().getYear());
+            holder.timeTV.setText(currentSpotCheck.getDateTime().getHours() + ":" + currentSpotCheck.getDateTime().getMinutes());
+            holder.carRegTV.setText(currentSpotCheck.getCarRegNo());
+            holder.carModelTV.setText(currentSpotCheck.getMakeOfCar());
+        }
+
+        void setSpotCheckList(List<SpotCheck> spotCheckList) {
+            this.spotCheckList = spotCheckList;
+            notifyDataSetChanged();
         }
 
         @Override
         public int getItemCount() {
-            return spotCheckList.size();
+            if (spotCheckList != null) {
+                return spotCheckList.size();
+            } else return 0;
+
         }
 
         public class SpotCheckViewHolder extends RecyclerView.ViewHolder {
@@ -127,16 +136,14 @@ public class MainActivity extends AppCompatActivity {
             public final TextView timeTV;
             public final TextView carRegTV;
             public final TextView carModelTV;
-            final SpotCheckListAdapter adapter;
 
-            public SpotCheckViewHolder(@NonNull View itemView, SpotCheckListAdapter adapter) {
+            public SpotCheckViewHolder(@NonNull View itemView) {
                 super(itemView);
                 dateTV = itemView.findViewById(R.id.dateTextView);
                 timeTV = itemView.findViewById(R.id.timeTextView);
                 carRegTV = itemView.findViewById(R.id.carRegNumTextView);
                 carModelTV = itemView.findViewById(R.id.carModelTextView);
-                this.adapter = adapter;
             }
         }
     }
-}
+    }
