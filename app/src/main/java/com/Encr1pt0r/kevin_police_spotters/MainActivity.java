@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public SpotCheckListAdapter.SpotCheckViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View itemView = inflater.inflate(R.layout.spotcheck_item, parent, false);
-            return new SpotCheckViewHolder(itemView);
+            return new SpotCheckViewHolder(itemView, adapter);
         }
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -134,18 +134,26 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        public class SpotCheckViewHolder extends RecyclerView.ViewHolder {
+        public class SpotCheckViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             public final TextView dateTV;
             public final TextView timeTV;
             public final TextView carRegTV;
             public final TextView carModelTV;
+            public SpotCheckListAdapter adapter;
 
-            public SpotCheckViewHolder(@NonNull View itemView) {
+            public SpotCheckViewHolder(@NonNull View itemView, SpotCheckListAdapter adapter) {
                 super(itemView);
                 dateTV = itemView.findViewById(R.id.dateTextView);
                 timeTV = itemView.findViewById(R.id.timeTextView);
                 carRegTV = itemView.findViewById(R.id.carRegNumTextView);
                 carModelTV = itemView.findViewById(R.id.carModelTextView);
+                this.adapter = adapter;
+                itemView.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View v) {
+                Log.i("debug", "I was just pressed.");
             }
         }
     }
