@@ -39,7 +39,7 @@ public class ViewItemActivity extends AppCompatActivity {
         TextView resultLabel = findViewById(R.id.resultLabel);
         TextView notesLabel = findViewById(R.id.notesLabel);
 
-        dateLabel.setText(dateTime.toString());
+        dateLabel.setText(dateTime.toLocalDate().toString() + " at " + dateTime.toLocalTime().toString().substring(0,5));
         locationLabel.setText(location);
         carRegLabel.setText(carReg);
         carModelLabel.setText(carModel);
