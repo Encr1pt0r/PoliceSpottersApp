@@ -40,7 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="**/**/****" />
+                android:text="**/**/****"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/locationTitle"
@@ -54,7 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="Somewhere" />
+                android:text="Somewhere"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/carModelTitle"
@@ -68,7 +70,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="Ford or something" />
+                android:text="Ford or something"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/carRegTitle"
@@ -82,7 +85,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="1234AD" />
+                android:text="1234AD"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/resultTitle"
@@ -96,7 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="No action taken?" />
+                android:text="No action taken?"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/notesTitle"
@@ -110,7 +115,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="..." />
+                android:text="..."
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>

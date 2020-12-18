@@ -21,20 +21,12 @@ import android.widget.TextView;
 import com.Encr1pt0r.kevin_police_spotters.model.SpotCheck;
 import com.Encr1pt0r.kevin_police_spotters.model.viewmodel.SpotCheckVM;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class MainActivity extends AppCompatActivity {
-
-    /**
-     * @TODO RecyclerView integration for Room (TouchableOpacity from React?) Done
-     */
 
     private SpotCheckVM spotCheckVM;
     List<SpotCheck> spotCheckList = new ArrayList<>();
@@ -48,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         spotCheckVM = ViewModelProviders.of(this).get(SpotCheckVM.class);
         spotCheckVM.getAllSpotChecks().observe(this, new Observer<List<SpotCheck>>() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onChanged(List<SpotCheck> spotChecks) {
                 // When the database is updated the main List is updated for the RecyclerView
@@ -56,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("debug", String.valueOf(spotCheckList));
                 //Log.i("debug",spotChecks.get(0).getDateTime().toLocalDate().toString());
                 //Log.i("debug",spotChecks.get(0).getDateTime().toLocalTime().toString());
-
                 adapter.setSpotCheckList(spotCheckList);
             }
         });
@@ -72,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(addSpotCheckIntent, 0);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -94,20 +83,21 @@ public class MainActivity extends AppCompatActivity {
 
         private final LayoutInflater inflater;
         private List<SpotCheck> spotCheckList;
+        private Context context;
 
         public SpotCheckListAdapter(Context context, List<SpotCheck> spotCheckList) {
             inflater = LayoutInflater.from(context);
             this.spotCheckList = spotCheckList;
+            this.context = context;
         }
 
         @NonNull
         @Override
         public SpotCheckListAdapter.SpotCheckViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View itemView = inflater.inflate(R.layout.spotcheck_item, parent, false);
-            return new SpotCheckViewHolder(itemView, adapter);
+            return new SpotCheckViewHolder(itemView, adapter, context);
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onBindViewHolder(@NonNull SpotCheckListAdapter.SpotCheckViewHolder holder, int position) {
             SpotCheck currentSpotCheck = spotCheckList.get(position);
@@ -140,21 +130,40 @@ public class MainActivity extends AppCompatActivity {
             public final TextView carRegTV;
             public final TextView carModelTV;
             public SpotCheckListAdapter adapter;
+            public Context context;
 
-            public SpotCheckViewHolder(@NonNull View itemView, SpotCheckListAdapter adapter) {
+            public SpotCheckViewHolder(@NonNull View itemView, SpotCheckListAdapter adapter, Context context) {
                 super(itemView);
                 dateTV = itemView.findViewById(R.id.dateTextView);
                 timeTV = itemView.findViewById(R.id.timeTextView);
                 carRegTV = itemView.findViewById(R.id.carRegNumTextView);
                 carModelTV = itemView.findViewById(R.id.carModelTextView);
                 this.adapter = adapter;
+                this.context = context;
                 itemView.setOnClickListener(this);
             }
 
             @Override
             public void onClick(View v) {
-                Log.i("debug", "I was just pressed.");
+                // Isolate SpotCheck to pass into Intent
+                int position = getLayoutPosition();
+                SpotCheck current = spotCheckList.get(position);
+
+                // debugging
+                Log.i("debug", current.getDateTime().toString() + " " + current.getCarRegNo() + " was just pressed");
+
+                // Create Intent with SpotCheck data in it
+                Intent viewSpotCheckItem = new Intent(context, ViewItemActivity.class);
+                viewSpotCheckItem.putExtra("spotcheckDate", current.getDateTime());
+                viewSpotCheckItem.putExtra("spotcheckLocation", current.getLocation());
+                viewSpotCheckItem.putExtra("spotcheckCarReg", current.getCarRegNo());
+                viewSpotCheckItem.putExtra("spotcheckModel", current.getMakeOfCar());
+                viewSpotCheckItem.putExtra("spotcheckResult", current.getResult());
+                viewSpotCheckItem.putExtra("spotcheckNotes", current.getNotes());
+                startActivity(viewSpotCheckItem);
             }
         }
     }
-    }
+
+
+}
