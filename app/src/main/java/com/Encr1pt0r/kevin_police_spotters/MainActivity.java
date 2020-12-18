@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Create Intent with SpotCheck data in it
                 Intent viewSpotCheckItem = new Intent(context, ViewItemActivity.class);
-                viewSpotCheckItem.putExtra("spotcheckDate", current.getDateTime());
+                viewSpotCheckItem.putExtra("spotcheckDate", current.getDateTime().toString());
                 viewSpotCheckItem.putExtra("spotcheckLocation", current.getLocation());
                 viewSpotCheckItem.putExtra("spotcheckCarReg", current.getCarRegNo());
                 viewSpotCheckItem.putExtra("spotcheckModel", current.getMakeOfCar());
