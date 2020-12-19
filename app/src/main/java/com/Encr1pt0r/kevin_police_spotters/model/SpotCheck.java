@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -11,7 +12,7 @@ public class SpotCheck {
     //Each element in a spot check defined as attributes
     @PrimaryKey
     @NonNull
-    private Date dateTime;
+    private LocalDateTime dateTime;
 
     @NonNull
     private String location;
@@ -29,7 +30,7 @@ public class SpotCheck {
     private String notes;
 
     // Rest of the stuff
-    public SpotCheck(@NonNull Date dateTime, @NonNull String location, @NonNull String carRegNo,
+    public SpotCheck(@NonNull LocalDateTime dateTime, @NonNull String location, @NonNull String carRegNo,
                      @NonNull String makeOfCar, @NonNull String result, @NonNull String notes) {
         this.dateTime = dateTime;
         this.location = location;
@@ -39,9 +40,7 @@ public class SpotCheck {
         this.notes = notes;
     }
 
-    public Date getDateTime() {
-        return dateTime;
-    }
+    public LocalDateTime getDateTime() { return dateTime; }
 
     public String getLocation() {
         return location;

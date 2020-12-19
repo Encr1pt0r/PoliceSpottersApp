@@ -33,7 +33,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTextLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="e.g. London"
@@ -47,7 +47,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/editTextCarRegNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="e.g. 1234AD"
@@ -61,7 +61,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName6"
+                android:id="@+id/editTextCarModel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="e.g. Ford Fiesta"
@@ -87,7 +87,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine2"
+                android:id="@+id/editTextNotes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start|top"
@@ -97,7 +97,8 @@
                 android:id="@+id/save_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save new entry" />
+                android:text="Save new entry"
+                android:onClick="saveNewSpotCheck"/>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

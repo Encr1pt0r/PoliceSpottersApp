@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
-@Database(entities = {SpotCheck.class}, version = 1)
+@Database(entities = {SpotCheck.class}, version = 2)
 @TypeConverters({DateConverters.class}) // to link dateTime element to the database
 public abstract class SpotCheckDB extends RoomDatabase {
     public abstract SpotCheckDao spotCheckDao();
