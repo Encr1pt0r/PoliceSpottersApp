@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import com.Encr1pt0r.kevin_police_spotters.model.SpotCheck;
 import com.Encr1pt0r.kevin_police_spotters.model.viewmodel.SpotCheckVM;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 // When the database is updated the main List is updated for the RecyclerView
                 spotCheckList = spotChecks;
                 Log.i("debug", String.valueOf(spotCheckList));
-                //Log.i("debug",spotChecks.get(0).getDateTime().toLocalDate().toString());
-                //Log.i("debug",spotChecks.get(0).getDateTime().toLocalTime().toString());
                 adapter.setSpotCheckList(spotCheckList);
             }
         });
@@ -76,6 +76,27 @@ public class MainActivity extends AppCompatActivity {
         // Create SpotCheck and add to ViewModel
         SpotCheck spotCheck = new SpotCheck(newDate, location, carReg, carModel, result, notes);
         spotCheckVM.insert(spotCheck);
+    }
+
+    public void shareSpotChecks(View view) {
+        // Generate String body in some sort of loop
+        String body = "";
+        for(SpotCheck spotCheck : spotCheckList) {
+            body += "\nOccurred: " + spotCheck.getDateTime().toLocalDate().toString() + " at " + spotCheck.getDateTime().toLocalTime().toString().substring(0,5) + "\n";
+            body += "Location: " + spotCheck.getLocation() + "\n";
+            body += "Car Reg No.: " + spotCheck.getCarRegNo() + "\n";
+            body += "Make/Model: " + spotCheck.getMakeOfCar() + "\n";
+            body += "Result: " + spotCheck.getResult() + "\n";
+            body += "Notes: \n" + spotCheck.getNotes() + "\n";
+        }
+
+        // Load implicit intent to mail app
+        Uri mailURI = Uri.parse("mailto:fred@test.com");
+        String subject = "SpotChecks " + LocalDate.now().toString();
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, mailURI);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, body);
+        startActivity(emailIntent);
     }
 
     // adapter for RecyclerView
@@ -164,6 +185,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }
