@@ -32,7 +32,7 @@
                 android:id="@+id/dateTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date and Time:"
+                android:text="@string/dateTimeTitle"
                 android:textSize="24sp" />
 
             <TextView
@@ -40,14 +40,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="**/**/****"
+                android:text="@string/dateHint"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/locationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location:"
+                android:text="@string/locationTitle"
                 android:textSize="24sp" />
 
             <TextView
@@ -55,14 +55,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="Somewhere"
+                android:text="@string/locationHint"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/carModelTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Make/Model of Car:"
+                android:text="@string/carModelTitle"
                 android:textSize="24sp" />
 
             <TextView
@@ -70,14 +70,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="Ford or something"
+                android:text="@string/carModelHint"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/carRegTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Car Registration No.:"
+                android:text="@string/carRegTitle"
                 android:textSize="24sp" />
 
             <TextView
@@ -85,14 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="1234AD"
+                android:text="@string/carRegHint"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/resultTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Result:"
+                android:text="@string/resultTitle"
                 android:textSize="24sp" />
 
             <TextView
@@ -100,14 +100,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="No action taken?"
+                android:text="@string/resultHint"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/notesTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Notes:"
+                android:text="@string/notesTitle"
                 android:textSize="24sp" />
 
             <TextView
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
-                android:text="..."
+                android:text="@string/noteHint"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -130,7 +130,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Edit"
+        android:text="@string/edit"
         android:onClick="startEditSpotCheck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/deleteButton"
@@ -145,7 +145,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Delete"
+        android:text="@string/delete"
         android:onClick="startDeleteSpotCheck"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
