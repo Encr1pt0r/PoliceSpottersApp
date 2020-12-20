@@ -3,8 +3,10 @@ package com.Encr1pt0r.kevin_police_spotters;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import java.time.LocalDateTime;
@@ -39,11 +41,37 @@ public class ViewItemActivity extends AppCompatActivity {
         TextView resultLabel = findViewById(R.id.resultLabel);
         TextView notesLabel = findViewById(R.id.notesLabel);
 
-        dateLabel.setText(dateTime.toLocalDate().toString() + " at " + dateTime.toLocalTime().toString().substring(0,5));
+        String dateText = dateTime.toLocalDate().toString() + " at " + dateTime.toLocalTime().toString().substring(0,5);
+        dateLabel.setText(dateText);
         locationLabel.setText(location);
         carRegLabel.setText(carReg);
         carModelLabel.setText(carModel);
         resultLabel.setText(result);
         notesLabel.setText(notes);
+    }
+
+    public void startEditSpotCheck(View view) {
+        // Start a EditItemActivity with the same data
+
+        // In the Activity
+            // User can change as he likes
+            // When done presses button
+            // Database is notified
+
+        // Activity returns with new data
+    }
+
+    public void startDeleteSpotCheck(View view) {
+        // Send data to onActivityResult
+        Intent replyIntent = new Intent();
+        replyIntent.putExtra("date", dateTime.toString());
+        replyIntent.putExtra("location", location);
+        replyIntent.putExtra("carReg", carReg);
+        replyIntent.putExtra("carModel", carModel);
+        replyIntent.putExtra("result", result);
+        replyIntent.putExtra("notes", notes);
+        replyIntent.putExtra("isDelete", true);
+        setResult(RESULT_OK, replyIntent);
+        finish();
     }
 }

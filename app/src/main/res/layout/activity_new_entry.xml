@@ -38,7 +38,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/locationHint"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/carReg_Label2"
@@ -53,7 +54,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/carRegHint"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/carModel_label2"
@@ -68,7 +70,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:hint="@string/carModelHint"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/result_label2"
@@ -80,7 +83,8 @@
             <Spinner
                 android:id="@+id/result_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/textView"
@@ -96,7 +100,8 @@
                 android:autofillHints=""
                 android:gravity="start|top"
                 android:hint="@string/noteHint"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:paddingBottom="8dp" />
 
             <Button
                 android:id="@+id/save_button"

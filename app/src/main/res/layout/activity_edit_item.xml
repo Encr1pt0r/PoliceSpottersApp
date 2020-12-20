@@ -28,33 +28,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/date_Label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dateTimeTitle"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/date_EditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:ems="10"
-                android:hint="@string/dateHint"
-                android:inputType="date"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/location_label"
-                android:autofillHints="" />
-
-            <TextView
                 android:id="@+id/location_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,15 +41,11 @@
                 android:id="@+id/location_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/locationHint"
                 android:inputType="text"
+                android:paddingBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/carReg_Label" />
@@ -95,15 +64,11 @@
                 android:id="@+id/carReg_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/carModelHint"
                 android:inputType="text"
+                android:paddingBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/carModel_label" />
@@ -125,7 +90,8 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/carRegHint"
-                android:inputType="text" />
+                android:inputType="text"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/result_label"
@@ -139,13 +105,9 @@
 
             <Spinner
                 android:id="@+id/spinnerEdit"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/result_label" />
@@ -162,23 +124,18 @@
 
             <EditText
                 android:id="@+id/notes_EditText"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:ems="10"
                 android:gravity="start|top"
                 android:hint="@string/noteHint"
                 android:inputType="textMultiLine"
+                android:paddingBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/saveButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/notes_label"
-                android:autofillHints="" />
+                app:layout_constraintTop_toBottomOf="@+id/notes_label" />
 
         </LinearLayout>
     </ScrollView>
@@ -193,6 +150,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/save_changes"
+        android:onClick="saveChanges"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
