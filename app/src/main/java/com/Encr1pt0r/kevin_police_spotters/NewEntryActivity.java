@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,7 +18,6 @@ public class NewEntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_entry);
 
         /**
-         * @TODO - finish interactions with the spinner
          * https://www.tutlane.com/tutorial/android/android-spinner-dropdown-list-with-examples
          * something I found to help with the result stuff
          * https://developer.android.com/guide/topics/ui/controls/spinner
@@ -32,11 +30,6 @@ public class NewEntryActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
-
-//    @Override
-//    public void onItemSelected(AdapterView<> parent, View view, int pos, long id) {
-//
-//    }
 
     // Generate data for return to MainActivity
     public void saveNewSpotCheck(View view) {

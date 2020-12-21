@@ -25,7 +25,9 @@ public class SpotCheckVM extends AndroidViewModel {
         return allSpotChecks;
     }
 
-    public void insert(SpotCheck spotCheck) {
-        repo.insertSpotCheck(spotCheck);
-    }
+    public void insert(SpotCheck spotCheck) { repo.insertSpotCheck(spotCheck);  }
+
+    public void update(SpotCheck spotCheck) { repo.updateSpotChecks(spotCheck); }
+
+    public void delete(SpotCheck spotCheck) { repo.deleteSpotChecks(spotCheck); }
 }

@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.Encr1pt0r.kevin_police_spotters.model.SpotCheck;
 import com.Encr1pt0r.kevin_police_spotters.model.viewmodel.SpotCheckVM;
@@ -66,16 +67,42 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        LocalDateTime newDate = LocalDateTime.now();
+        // Data from Intent generated
+        LocalDateTime date;
         String location = data.getStringExtra("location");
         String carReg = data.getStringExtra("carReg");
         String carModel = data.getStringExtra("carModel");
         String result = data.getStringExtra("result");
         String notes = data.getStringExtra("notes");
 
-        // Create SpotCheck and add to ViewModel
-        SpotCheck spotCheck = new SpotCheck(newDate, location, carReg, carModel, result, notes);
-        spotCheckVM.insert(spotCheck);
+        Log.i("debug", requestCode + " " + resultCode + " " + data.toString());
+
+        if(requestCode == 0) {
+            // Create SpotCheck and add to ViewModel
+            date = LocalDateTime.now();
+            SpotCheck spotCheck = new SpotCheck(date, location, carReg, carModel, result, notes);
+            spotCheckVM.insert(spotCheck);
+            Toast notice = Toast.makeText(this, "Spot Check Inserted", Toast.LENGTH_SHORT);
+            notice.show();
+            Log.i("debug", "SpotCheck " + spotCheck.getCarRegNo() + " inserted");
+
+        } else if(requestCode == 1) {
+            // Date is extracted from Intent
+            String dateTimeString = data.getStringExtra("date");
+            Log.i("debug", dateTimeString);
+            date = LocalDateTime.parse(dateTimeString);
+
+            // Boolean extra to decide to delete or update
+            boolean isDelete = data.getBooleanExtra("isDelete", false);
+
+            if(isDelete) {
+                SpotCheck spotCheck = new SpotCheck(date, location, carReg, carModel, result, notes);
+                spotCheckVM.delete(spotCheck);
+                Toast notice = Toast.makeText(this, "Spot Check Deleted", Toast.LENGTH_SHORT);
+                notice.show();
+                Log.i("debug", "SpotCheck " + spotCheck.getCarRegNo() + " deleted");
+            }
+        }
     }
 
     public void shareSpotChecks(View view) {
@@ -181,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 viewSpotCheckItem.putExtra("spotcheckModel", current.getMakeOfCar());
                 viewSpotCheckItem.putExtra("spotcheckResult", current.getResult());
                 viewSpotCheckItem.putExtra("spotcheckNotes", current.getNotes());
-                startActivity(viewSpotCheckItem);
+                startActivityForResult(viewSpotCheckItem, 1);
             }
         }
     }

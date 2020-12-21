@@ -12,16 +12,7 @@
 
         <activity
             android:name=".NewEntryActivity"
-            android:label="Add New Entry"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.Encr1pt0r.kevin_police_spotters.MainActivity" />
-        </activity>
-
-        <activity
-            android:name=".EditItemActivity"
-            android:label="Edit Item"
+            android:label="Add New Spot Check"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -30,7 +21,7 @@
 
         <activity
             android:name=".ViewItemActivity"
-            android:label="View Current Item"
+            android:label="@string/app_name"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

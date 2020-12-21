@@ -29,75 +29,85 @@
                 android:id="@+id/location_label2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="@string/locationTitle"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="e.g. London"
-                android:inputType="textPersonName" />
+                android:autofillHints=""
+                android:hint="@string/locationHint"
+                android:inputType="textPersonName"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/carReg_Label2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Car Registration no.:"
+                android:text="@string/carRegTitle"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextCarRegNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="e.g. 1234AD"
-                android:inputType="textPersonName" />
+                android:autofillHints=""
+                android:hint="@string/carRegHint"
+                android:inputType="textPersonName"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/carModel_label2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Make/Model of Car:"
+                android:text="@string/carModelTitle"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextCarModel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="e.g. Ford Fiesta"
-                android:inputType="textPersonName" />
+                android:autofillHints=""
+                android:hint="@string/carModelHint"
+                android:inputType="textPersonName"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/result_label2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Result:"
+                android:text="@string/resultTitle"
                 android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/result_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Notes:"
+                android:text="@string/notesTitle"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editTextNotes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:gravity="start|top"
-                android:inputType="textMultiLine" />
+                android:hint="@string/noteHint"
+                android:inputType="textMultiLine"
+                android:paddingBottom="8dp" />
 
             <Button
                 android:id="@+id/save_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save new entry"
+                android:text="@string/save_new_entry"
                 android:onClick="saveNewSpotCheck"/>
         </LinearLayout>
     </ScrollView>

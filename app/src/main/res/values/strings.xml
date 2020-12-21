@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Police Spotters</string>
+    <string name="dateTimeTitle">Occurred at:</string>
+    <string name="locationTitle">Location:</string>
+    <string name="carModelTitle">Make/Model of Car:</string>
+    <string name="carRegTitle">Car Registration No.:</string>
+    <string name="resultTitle">Result:</string>
+    <string name="notesTitle">Notes:</string>
+    <string name="add_new_spot_check">Add New Spot Check</string>
+    <string name="save_new_entry">Save new entry</string>
+    <string name="carModelHint">e.g. Ford Fiesta</string>
+    <string name="locationHint">e.g. London</string>
+    <string name="carRegHint">e.g. 1234AD</string>
+    <string name="noteHint">e.g. It went well</string>
+    <string name="dateHint">**/**/****</string>
+    <string name="resultHint">No action taken?</string>
+    <string name="save_changes">Save changes</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
 </resources>
