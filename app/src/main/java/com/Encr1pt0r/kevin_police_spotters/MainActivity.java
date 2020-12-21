@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         String result = data.getStringExtra("result");
         String notes = data.getStringExtra("notes");
 
+        Log.i("debug", requestCode + " " + resultCode + " " + data.toString());
+
         if(requestCode == 0) {
             // Create SpotCheck and add to ViewModel
             date = LocalDateTime.now();
@@ -99,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast notice = Toast.makeText(this, "Spot Check Deleted", Toast.LENGTH_SHORT);
                 notice.show();
                 Log.i("debug", "SpotCheck " + spotCheck.getCarRegNo() + " deleted");
-            } else {
-                // if false then it is updated
             }
         }
     }

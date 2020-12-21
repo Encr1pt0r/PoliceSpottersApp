@@ -39,7 +39,7 @@ public class ViewItemActivity extends AppCompatActivity {
         TextView carModelLabel = findViewById(R.id.carModelLabel);
         TextView carRegLabel = findViewById(R.id.carRegLabel);
         TextView resultLabel = findViewById(R.id.resultLabel);
-        TextView notesLabel = findViewById(R.id.notesLabel);
+        TextView  notesLabel = findViewById(R.id.notesLabel);
 
         String dateText = dateTime.toLocalDate().toString() + " at " + dateTime.toLocalTime().toString().substring(0,5);
         dateLabel.setText(dateText);
@@ -48,17 +48,6 @@ public class ViewItemActivity extends AppCompatActivity {
         carModelLabel.setText(carModel);
         resultLabel.setText(result);
         notesLabel.setText(notes);
-    }
-
-    public void startEditSpotCheck(View view) {
-        // Start a EditItemActivity with the same data
-
-        // In the Activity
-            // User can change as he likes
-            // When done presses button
-            // Database is notified
-
-        // Activity returns with new data
     }
 
     public void startDeleteSpotCheck(View view) {
